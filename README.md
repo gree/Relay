@@ -39,8 +39,11 @@ A typical cycle looks like this -
     * If it fails then it will try to connect to the next listener randomly selected until it is able to connect to one.
     * If it fails to connect to any listener it just keeps the file, logs the error and waits for the next cycle to kick off.
 
+
+Note that sending the SIGINT signal (Ctrl+C or kill -2) to the process will result it in waiting to finish sending data through any currently open connections and then shutting down gracefully.
+
 ###The command line params to start your relay sender process -
--http_port - The port on which the listener returns a "SUCCESS" response. It is used as a health check that the process is running.
+-http_port - The port on which the sender returns a "SUCCESS" response. It is used as a health check that the process is running.
 
 -listener_port - The port on which to SEND THE DATA TO. ie. It'll be the port on which the receiving process will listen to.
 
@@ -58,6 +61,17 @@ These are the two more important arguments to understand.
 
 ##Listener
 
+###How the listener works
+The listener listens on the specified port and logs the data. Note that for an incoming connection, it will buffer the data in memory until the tcp connection ends and then write it to a file called `[storage-folder]/logged_data/logged_lines.txt`. The storage folder is specified as a command line param.
+
+On receiving a SIGINT signal (Ctrl+C or kill -2) the process will stop accepting connections and then shut itself down after 2 seconds.
+
+###The command line params to start your relay listener process -
+-http_port - The port on which the listener returns a "SUCCESS" response. It is used as a health check that the process is running.
+
+-log_server_port - The port on which to RECEIVE THE DATA FROM. ie. It'll be the port on which the sender processes will send to.
+
+-storage_folder - The folder in which the data is logged to.
 
 #AUTHORS
 
