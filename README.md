@@ -1,7 +1,7 @@
 RELAY
 =====
 
-Relay is a log shipping system built using nodejs. It is highly scalable and reliable system. It is designed to be decentralized, and failure of one of the nodes in the system does not affect the overall health of the system. It is a bare bones with only a few command line parameters need to be setup and you should be good to go.
+Relay is a log shipping system built using nodejs. It is highly scalable, reliable and decentralized system.  The failure of one of the nodes in the system does not affect the overall health of the system. It is a bare bones with only a few command line parameters need to be setup and you should be good to go.
 
 Relay is completely blind to the data and any type of information can be shipped over it. Senders and Listeners can be used indepedently and can be used as stand alone pluggable parts in your application.
 
