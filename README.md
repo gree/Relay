@@ -19,7 +19,7 @@ Relay doesn't care about the actual data you want to ship. But it does care abou
 Remember the `period_interval` we mentioned earlier? The sender checks the relay_folder for new files every `period_interval`. We will call this mechanism a `cycle`. This also means that, ideally, you generate new files every `period_interval` seconds.
 
 ###How the sender works
-Every `cycle` the sender scans for any files having unix timestamp older than `2 * period_interval` and takes them up for processing. Currently it will process upto 7 files in a single cycle. We plan to make this configurable in the later versions. It will not go to the next cycle until the current cycle completes.
+Every `cycle` the sender scans for any files having unix timestamp older than `2 * period_interval` ([why this number?](docs/why_period_interval.md) ) and takes them up for processing. Currently it will process upto 7 files in a single cycle. We plan to make this configurable in the later versions. It will not go to the next cycle until the current cycle completes.
 
 This is getting all very abstract so I think an example is due here.
 A typical cycle looks like this -
