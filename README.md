@@ -43,6 +43,8 @@ A typical cycle looks like this -
 Note that sending the SIGINT signal (Ctrl+C or kill -2) to the process will result it in waiting to finish sending data through any currently open connections and then shutting down gracefully.
 
 ###The command line params to start your relay sender process -
+Run index.js in the `analytics_stream_sender/src/` folder like `node index.js [command-line-params]`.
+
 -http_port - The port on which the sender returns a "SUCCESS" response. It is used as a health check that the process is running.
 
 -listener_port - The port on which to SEND THE DATA TO. ie. It'll be the port on which the receiving process will listen to.
@@ -59,6 +61,8 @@ These are the two more important arguments to understand.
 
 -period\_interval - The time period for which the process checks for older files in the relay_folder.
 
+An example command is given in `analytics_stream_sender/scripts/run_analyitcs_stream_sender.sh`
+
 ##Listener
 
 ###How the listener works
@@ -67,12 +71,15 @@ The listener listens on the specified port and logs the data. Note that for an i
 On receiving a SIGINT signal (Ctrl+C or kill -2) the process will stop accepting connections and then shut itself down after 2 seconds.
 
 ###The command line params to start your relay listener process -
+Run index.js in the `analytics_stream_listener/src/` folder like `node index.js [command-line-params]`.
+
 -http_port - The port on which the listener returns a "SUCCESS" response. It is used as a health check that the process is running.
 
 -log_server_port - The port on which to RECEIVE THE DATA FROM. ie. It'll be the port on which the sender processes will send to.
 
 -storage_folder - The folder in which the data is logged to.
 
+An example command is given in `analytics_stream_listener/scripts/run_analyitcs_stream_listener.sh`
 #AUTHORS
 
 Karan Kurani
